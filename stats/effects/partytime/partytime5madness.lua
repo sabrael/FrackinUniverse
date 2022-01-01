@@ -16,7 +16,8 @@ function update(dt)
 	end
 
 	if (self.songTimer)< 1 then
-		animator.playSound("dancemusic")
+		-- bendicott: remove annoying music
+    --animator.playSound("dancemusic")
 		self.songTimer = 60
 	end
 

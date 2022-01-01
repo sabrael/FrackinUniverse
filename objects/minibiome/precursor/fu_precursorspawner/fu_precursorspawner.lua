@@ -78,8 +78,9 @@ function update(dt)
 					params.aggressive = storage.pets[1].config.parameters.aggressive
 					params.level = world.threatLevel()
 
-					params.dropPools = {}
-					params.dropPools["default"] = "fu_precursorspawnerloot"
+					--params.dropPools = {}
+					-- bendicott: swap default loot table
+					--params.dropPools["default"] = "empty" -- "fu_precursorspawnerloot"
 
 					params.statusSettings = baseParams.statusSettings or {}
 					params.statusSettings.stats = baseParams.statusSettings.stats or {}
@@ -91,13 +92,14 @@ function update(dt)
 
 					params.behaviorConfig = util.mergeTable(baseParams.behaviorConfig or {}, params.behaviorConfig or {})
 
-					if baseParams.deathBehavior and baseParams.deathBehavior ~= "monster-death" then --Makes it so that this doesn't break some monsters (maybe make them just drop the beer item instead?)
-					else
-						params.deathBehavior = "monster-death"
-						params.behaviorConfig.deathActions = params.behaviorConfig.deathActions or {}
-						table.insert(params.behaviorConfig.deathActions, {name = "action-projectile", parameters = {aimDirection={0,-1},projectileType = "fu_beer", projectileParameters = {actionOnReap = {{action = "liquid", liquid = "beer", quantity = storage.fuelAmount }}}}})
-					end
+					--if baseParams.deathBehavior and baseParams.deathBehavior ~= "monster-death" then --Makes it so that this doesn't break some monsters (maybe make them just drop the beer item instead?)
+					--else
+					--	params.deathBehavior = "monster-death"
+					--	params.behaviorConfig.deathActions = params.behaviorConfig.deathActions or {}
+					--	table.insert(params.behaviorConfig.deathActions, {name = "action-projectile", parameters = {aimDirection={0,-1},projectileType = "fu_beer", projectileParameters = {actionOnReap = {{action = "liquid", liquid = "beer", quantity = storage.fuelAmount }}}}})
+					--end
 
+          -- bendicott: may need to remove this? I think this may be use to keep spawned mobs from spawning new entities
 					for actionType, actions in pairs (params.behaviorConfig) do
 						if type(actions) == "table" then
 							local tempActions = actions
